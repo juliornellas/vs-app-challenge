@@ -4,13 +4,16 @@ definePageMeta({
   middleware: ["validate-session"],
 });
 const favoriteStore = useFavoritesStore();
-const { getFavorites } = favoriteStore;
+const { getFavoritesUsers } = favoriteStore;
+const { getFavoritesPosts } = favoriteStore;
 
 const { $api } = useNuxtApp();
 const user = useUser();
 
 const { data: posts } = await $api.get("posts");
-getFavorites();
+
+getFavoritesUsers();
+getFavoritesPosts();
 </script>
 
 <template>
