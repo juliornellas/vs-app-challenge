@@ -1,5 +1,4 @@
 <script setup>
-import { usePostsStore } from "@/stores/post";
 import { storeToRefs } from "pinia";
 import { toRaw } from "vue";
 

@@ -14,6 +14,7 @@ export const useUser = defineStore("user", () => {
   const tokenCookie = useCookie("jwt", getCookieParams());
 
   const isGuest = computed(() => !Object.keys(data.value).length);
+  const userId = computed(() => (isGuest.value ? null : data.value.id));
 
   const name = computed(() => (isGuest.value ? null : data.value.name));
 
@@ -71,6 +72,7 @@ export const useUser = defineStore("user", () => {
     token,
     isGuest,
     name,
+    userId,
     login,
     register,
     validate,

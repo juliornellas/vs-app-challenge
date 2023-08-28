@@ -82,3 +82,7 @@ export const useFavoritesStore = defineStore("favoriteStore", () => {
     favoritedPosts,
   };
 });
+
+if (import.meta.hot) {
+  import.meta.hot.accept(acceptHMRUpdate(useUser, import.meta.hot));
+}

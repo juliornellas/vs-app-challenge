@@ -1,8 +1,8 @@
 <script setup>
 import { HeartIcon } from "@heroicons/vue/24/outline";
-import { useFavoritesStore } from "@/stores/favorite";
 import { storeToRefs } from "pinia";
 
+const user = useUser();
 const favoriteStore = useFavoritesStore();
 const { favoriteUser } = favoriteStore;
 const { favoritePost } = favoriteStore;
@@ -24,9 +24,13 @@ const isFollowingUser = (id) => {
 };
 
 function checkFollowUser(id) {
-  favoritedUsers.value.some((v) => v === id)
-    ? removeFavoriteUser(id)
-    : favoriteUser(id);
+  if (user.userId !== id) {
+    favoritedUsers.value.some((v) => v === id)
+      ? removeFavoriteUser(id)
+      : favoriteUser(id);
+  } else {
+    alert("Hey, You can't follow yourself!");
+  }
 }
 
 //POST
