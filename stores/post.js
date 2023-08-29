@@ -12,9 +12,10 @@ export const usePostsStore = defineStore("postStore", () => {
 
   const checkUpdate = ref(false);
 
-  async function storePost({ title, body }) {
+  async function storePost({ title, body, image }) {
     try {
-      await $api.post("/posts", { title, body });
+      let config = { headers: { "Content-Type": "application/json" } };
+      await $api.post("/posts", { title, body, image }, config);
       checkUpdate.value = true;
     } catch (error) {
       console.log(error);

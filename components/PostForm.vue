@@ -1,13 +1,16 @@
 <script setup>
 import { storeToRefs } from "pinia";
-import { toRaw } from "vue";
+import { ref, toRaw } from "vue";
 
 const postsStore = usePostsStore();
 const { storePost } = postsStore;
 
+const file = ref("");
+
 const post = reactive({
   title: "",
   body: "",
+  image: "",
 });
 
 const errors = reactive({
@@ -22,16 +25,38 @@ function checkPost() {
 
 function submit() {
   checkPost();
+
   if (errors.title == false && errors.body == false) {
-    storePost(toRaw(post));
+    post.image = JSON.stringify(file.value);
+    storePost(post);
   }
+
   post.title = "";
   post.body = "";
+  post.image = "";
+  file.value = "";
+}
+
+function uploadImage(e) {
+  const files = e.target.files || e.dataTransfer.files;
+  if (!files.length) return;
+  files[0].size > 2000000
+    ? alert("Your image is over to 2mb! Choose another!")
+    : (file.value = files[0]);
+}
+
+function clearImage() {
+  file.value = "";
+  post.image = "";
 }
 </script>
 
 <template>
-  <form class="grid gap-4 mb-16" @submit.prevent="submit">
+  <form
+    class="grid gap-4 mb-16"
+    @submit.prevent="submit"
+    enctype="multipart/form-data"
+  >
     <input
       v-model.trim="post.title"
       placeholder="Post title"
@@ -63,6 +88,27 @@ function submit() {
     >
       Body required</small
     >
+    <div class="flex justify-between inline-block align-middle">
+      <div>
+        <label
+          for="image-upload"
+          class="bg-blue-200 px-4 py-2 border rounded-md shadow-sm"
+          >Upload an image</label
+        >
+        <input type="file" id="image-upload" @change="uploadImage" hidden />
+      </div>
+      <div>
+        <p>{{ file.name }}</p>
+      </div>
+      <div v-if="file">
+        <button
+          @click="clearImage"
+          class="px-2 rounded-full bg-red-600 text-white shadow-md"
+        >
+          Clear
+        </button>
+      </div>
+    </div>
     <button
       class="bg-blue-600 text-white px-8 py-4 rounded-lg"
       @click.prevent="submit"

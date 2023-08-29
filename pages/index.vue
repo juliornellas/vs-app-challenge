@@ -22,7 +22,6 @@ allPosts.value = posts;
 
 async function checkNewPosts() {
   const { data: check } = await $api.get("posts");
-  console.log("Retorno getPosts Length", check.length);
   check.length > allPosts.value.length
     ? (newPosts.value = true)
     : (newPosts.value = false);
@@ -43,7 +42,6 @@ onMounted(() => {
     getFavoritesUsers();
     getFavoritesPosts();
     checkNewPosts();
-    console.log("Refreshed");
   }, 30000);
 });
 </script>

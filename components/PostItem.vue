@@ -2,6 +2,8 @@
 import { HeartIcon } from "@heroicons/vue/24/outline";
 import { storeToRefs } from "pinia";
 
+const config = useRuntimeConfig();
+
 const user = useUser();
 const favoriteStore = useFavoritesStore();
 const { favoriteUser } = favoriteStore;
@@ -43,6 +45,9 @@ function checkFollowPost(id) {
     ? removeFavoritePost(id)
     : favoritePost(id);
 }
+
+//BASE URL STORAGE
+const urlStorage = config.public.API_URL_STORAGE;
 </script>
 
 <template>
@@ -64,6 +69,7 @@ function checkFollowPost(id) {
     <p>
       {{ post.body }}
     </p>
+    <img v-if="post.image" :src="`${urlStorage}/${post.image}`" />
     <button
       @click="checkFollowPost(post.id)"
       class="bg-red-200 text-red-500 flex items-center justify-center gap-2 p-4 rounded-lg"
