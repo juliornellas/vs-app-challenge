@@ -6,12 +6,9 @@ const config = useRuntimeConfig();
 
 const user = useUser();
 const favoriteStore = useFavoritesStore();
-const { favoriteUser } = favoriteStore;
-const { favoritePost } = favoriteStore;
-const { removeFavoriteUser } = favoriteStore;
-const { removeFavoritePost } = favoriteStore;
-const { favoritedUsers } = storeToRefs(favoriteStore);
-const { favoritedPosts } = storeToRefs(favoriteStore);
+const { favoriteUser, favoritePost, removeFavoriteUser, removeFavoritePost } =
+  favoriteStore;
+const { favoritedUsers, favoritedPosts } = storeToRefs(favoriteStore);
 
 defineProps({
   post: {
