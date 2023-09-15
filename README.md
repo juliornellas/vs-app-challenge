@@ -8,9 +8,7 @@ This repository contains the front-end application of _Chipper_, a fictional mic
 
 Take some time to familiarize yourself with the codebase.
 
-1. Upload this code to a PRIVATE repository on GitHub. Invite the user [nicodevs](https://github.com/nicodevs/) to join the repository.
-
-   ![Image](https://i.imgur.com/wxemxjk.png)
+1. Upload this code to a PRIVATE repository on GitHub.
 
 2. Follow these steps to set up your local development environment:
 
@@ -140,6 +138,6 @@ Estimated Time Required: ~30 minutes
 
 # Done!
 
-Thank you for completing this challenge. Kindly inform us when you have finished, and we will proceed to review your code. Make sure to add [nicodevs](https://github.com/nicodevs) to the list of collaborators for both your private repositories, including the Laravel API and the Nuxt app.
+Thank you for completing this challenge. Kindly inform us when you have finished, and we will proceed to review your code. Make sure to add to the list of collaborators for both your private repositories, including the Laravel API and the Nuxt app.
 
 Best of luck!

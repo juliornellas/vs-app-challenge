@@ -9,8 +9,7 @@ const favoriteStore = useFavoritesStore();
 const postStore = usePostsStore();
 const { allPosts } = storeToRefs(postStore);
 const { showPosts } = postStore;
-const { getFavoritesUsers } = favoriteStore;
-const { getFavoritesPosts } = favoriteStore;
+const { getFavoritesUsers, getFavoritesPosts } = favoriteStore;
 
 const { $api } = useNuxtApp();
 const user = useUser();
